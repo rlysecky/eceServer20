@@ -1,7 +1,7 @@
 const express = require('express');
-var router = express.Router();
+let router = express.Router();
 
-var allCurrencies = {
+let allCurrencies = {
   "AED": "United Arab Emirates Dirham",
   "AFN": "Afghan Afghani",
   "ALL": "Albanian Lek",
@@ -175,6 +175,10 @@ var allCurrencies = {
 };
 
 router.get("/", function(req, res) {
+  if(!req.query.hasOwnProperty("currency")) {
+     res.status(400).send(JSON.stringify({ message: "Currency abbreviation missing."}));
+     return;
+  }
 
   let responseObject = {
     abbreviation: req.query.currency,
