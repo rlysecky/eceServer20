@@ -18,7 +18,9 @@ function sendRegisterRequest() {
     contentType: 'application/json',
     data: JSON.stringify({email:email, fullName:fullName, password:password}),
     dataType: 'json'
-  }).done(registerSuccess).fail(registerError);
+  })
+    .done(registerSuccess)
+    .fail(registerError);
 }
 
 function registerSuccess(data, textStatus, jqXHR) {
@@ -45,4 +47,3 @@ function registerError(jqXHR, textStatus, errorThrown) {
 $(function () {
   $('#signup').click(sendRegisterRequest);
 });
-

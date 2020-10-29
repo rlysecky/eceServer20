@@ -8,6 +8,7 @@ const path = require('path');
 let app = express();
 
 let usersRouter = require('./routes/users');
+let devicesRouter = require('./routes/devices');
 let labRouter = require('./routes/lab');
 let participationRouter = require('./routes/participation');
 let currencyRouter = require('./routes/currency');
@@ -43,6 +44,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
+app.use('/devices', devicesRouter);
 app.use('/lab', labRouter);
 app.use('/participation', participationRouter);
 app.use('/shipping', shippingRouter);
