@@ -29,5 +29,14 @@ function signinFailure(jqXHR, testStatus, errorThrown) {
 }
 
 $(function() {
+  if( window.localStorage.getItem("authToken") ) {
+    window.location.replace("account.html");
+  }
+
   $("#signin").click(sendSigninRequest);
+  $("#password").keypress(function(event) {
+    if (event.which === 13) {
+      sendSigninRequest();
+    }
+  });
 });

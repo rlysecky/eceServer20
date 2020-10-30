@@ -89,19 +89,16 @@ router.get('/account', function(req, res) {
          accountInfo["email"] = user.email;
          accountInfo["fullName"] = user.fullName;
          accountInfo["lastAccess"] = user.lastAccess;
-         
+         accountInfo['devices'] = [];   // Array of devices
+          
          // Find devices based on decoded token
          Device.find({ userEmail : decodedToken.email}, function(err, devices) {
-           // Construct device list
-           let deviceList = []; 
-
            if (!err) {
              for (device of devices) {
-               deviceList.push({ deviceId: device.deviceId, apikey: device.apikey });
+               accountInfo['devices'].push({ deviceId: device.deviceId, apikey: device.apikey });
              }
            }
 
-           accountInfo['devices'] = deviceList;
            res.status(200).json(accountInfo);
          });
        }

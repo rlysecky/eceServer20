@@ -101,7 +101,12 @@ function hideAddDeviceForm() {
 }
 
 $(function() {
-  sendAccountRequest();
+  if (!window.localStorage.getItem("authToken")) {
+    window.location.replace("index.html");
+  }
+  else {
+    sendAccountRequest();
+  }
 
   // Register event listeners
   $("#addDevice").click(showAddDeviceForm);

@@ -83,7 +83,6 @@ router.post('/register', function(req, res, next) {
       newDevice.save(function(err, newDevice) {
         if (err) {
           responseJson.message = err;
-          // This following is equivalent to: res.status(400).send(JSON.stringify(responseJson));
           return res.status(400).json(responseJson);
         }
         else {
