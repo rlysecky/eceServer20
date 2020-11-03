@@ -7,8 +7,12 @@ const path = require('path');
 
 let app = express();
 
+// Routes for Holz app
 let usersRouter = require('./routes/users');
 let devicesRouter = require('./routes/devices');
+let potholesRouter = require('./routes/potholes');
+
+// Routes for other example endpoints and labs
 let labRouter = require('./routes/lab');
 let participationRouter = require('./routes/participation');
 let currencyRouter = require('./routes/currency');
@@ -43,8 +47,12 @@ app.use(cookieParser());
 // Static file hosting
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Endpoints for Holz App
 app.use('/users', usersRouter);
 app.use('/devices', devicesRouter);
+app.use('/potholes', potholesRouter);
+
+// Endpoints for other examples and labs
 app.use('/lab', labRouter);
 app.use('/participation', participationRouter);
 app.use('/shipping', shippingRouter);
