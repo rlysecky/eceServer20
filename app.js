@@ -65,7 +65,13 @@ app.use(function(req, res, next) {
 
 // Error handler to return error as JSON data. 
 app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
+  if( !err.status ) {
+    console.log(req.method + " " + req.originalUrl + " " + 500);
+    console.log("Error: " + err.message);
+    console.log("Stack: " + err.stack);
+  }
+
+  res.status(err.status || 500);  
   res.send(JSON.stringify({
     message: err.message,
     status: err.status,
